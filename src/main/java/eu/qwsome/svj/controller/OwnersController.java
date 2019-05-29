@@ -1,46 +1,45 @@
 package eu.qwsome.svj.controller;
 
-import javafx.collections.FXCollections;
+import eu.qwsome.svj.entity.FlatOwner;
+import eu.qwsome.svj.service.FlatOwnerService;
+import eu.qwsome.svj.view.SceneManager;
+import eu.qwsome.svj.view.View;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Menu;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.util.UUID;
 
 /**
  * @author Lukáš Kvídera
  */
 public class OwnersController {
+
+  private final FlatOwnerService flatOwnerService;
   @FXML
-  private Menu ownersMenuButton;
+  private TableColumn<FlatOwner, String> flatOwnerNameTableColumn;
+  @FXML
+  private TableColumn<FlatOwner, String> flatOwnerLastNameTableColumn;
 
   @FXML
-  private Menu flatsMenuButton;
+  private TableView<FlatOwner> ownersTableView;
 
-  @FXML
-  private Button test;
-
-  @FXML
-  private ListView<String> ownersList;
-  private ObservableList<String> owners;
-
-  @FXML
-  private TextField ownerNameField;
-
-  @FXML
-  public void initialize() {
-    this.owners = FXCollections.observableArrayList();
-    this.ownersList.setItems(this.owners);
-    this.ownersList.setOnMouseClicked(
-      event -> this.ownerNameField.setText(this.ownersList.getSelectionModel().getSelectedItem())
-    );
+  public OwnersController() {
+    this.flatOwnerService = FlatOwnerService.getInstance();
   }
 
   @FXML
-  public void onOwnersButtonClicked() {
-    this.owners.add(UUID.randomUUID().toString());
+  public void initialize() {
+    this.flatOwnerNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+    this.flatOwnerLastNameTableColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+
+    final ObservableList<FlatOwner> flatOwners = this.flatOwnerService.findAll();
+    this.ownersTableView.setItems(flatOwners);
+  }
+
+  @FXML
+  public void onCreateFlatOwner() {
+    SceneManager.switchTo(View.FLAT_OWNER_EDIT, this.ownersTableView.getScene());
   }
 }
