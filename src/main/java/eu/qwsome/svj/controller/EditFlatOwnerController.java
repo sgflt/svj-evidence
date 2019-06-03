@@ -9,16 +9,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 
 /**
  * @author Lukáš Kvídera
  */
+@Controller
 public class EditFlatOwnerController {
 
   private static final Logger LOG = LoggerFactory.getLogger(EditFlatOwnerController.class);
 
 
   private final FlatOwnerService flatOwnerService;
+  private final SceneManager sceneManager;
 
   @FXML
   private TextField firstNameInput;
@@ -29,8 +32,9 @@ public class EditFlatOwnerController {
   @FXML
   private Button saveFlatOwnerButton;
 
-  public EditFlatOwnerController() {
-    this.flatOwnerService = FlatOwnerService.getInstance();
+  public EditFlatOwnerController(final FlatOwnerService flatOwnerService, final SceneManager sceneManager) {
+    this.flatOwnerService = flatOwnerService;
+    this.sceneManager = sceneManager;
   }
 
 
@@ -38,7 +42,7 @@ public class EditFlatOwnerController {
   public void onSaveFlatOwner() {
     LOG.trace("onSaveFlatOwner()");
     this.flatOwnerService.save(new FlatOwner(this.firstNameInput.getText(), this.lastNameInput.getText()));
-    SceneManager.switchTo(View.MAIN, this.saveFlatOwnerButton.getScene());
+    this.sceneManager.switchTo(View.MAIN, this.saveFlatOwnerButton.getScene());
   }
 
 }

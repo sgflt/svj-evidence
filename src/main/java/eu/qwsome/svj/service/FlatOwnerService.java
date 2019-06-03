@@ -6,25 +6,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 /**
  * @author Lukáš Kvídera
  */
+@Service
 public class FlatOwnerService {
 
   private static final Logger LOG = LoggerFactory.getLogger(FlatOwnerService.class);
-  private static final FlatOwnerService INSTANCE = new FlatOwnerService(new FlatOwnerRepository());
 
   private final FlatOwnerRepository flatOwnerRepository;
   private final ObservableList<FlatOwner> flatOwners;
 
-  private FlatOwnerService(final FlatOwnerRepository flatOwnerRepository) {
+  public FlatOwnerService(final FlatOwnerRepository flatOwnerRepository) {
     this.flatOwnerRepository = flatOwnerRepository;
     this.flatOwners = FXCollections.observableList(this.flatOwnerRepository.findAll());
-  }
-
-  public static FlatOwnerService getInstance() {
-    return INSTANCE;
   }
 
   public ObservableList<FlatOwner> findAll() {
