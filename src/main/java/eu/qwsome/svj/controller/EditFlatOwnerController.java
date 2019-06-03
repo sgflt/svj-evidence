@@ -41,7 +41,10 @@ public class EditFlatOwnerController {
   @FXML
   public void onSaveFlatOwner() {
     LOG.trace("onSaveFlatOwner()");
-    this.flatOwnerService.save(new FlatOwner(this.firstNameInput.getText(), this.lastNameInput.getText()));
+    final FlatOwner flatOwner = new FlatOwner();
+    flatOwner.setFirstName(this.firstNameInput.getText());
+    flatOwner.setLastName(this.lastNameInput.getText());
+    this.flatOwnerService.save(flatOwner);
     this.sceneManager.switchTo(View.MAIN, this.saveFlatOwnerButton.getScene());
   }
 

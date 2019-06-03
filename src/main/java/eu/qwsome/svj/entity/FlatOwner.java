@@ -1,24 +1,37 @@
 package eu.qwsome.svj.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * @author Lukáš Kvídera
  */
+@Entity
 public class FlatOwner {
 
-  private final String firstName;
-  private final String lastName;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
-  public FlatOwner(final String firstName, final String lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
+  private String firstName;
+  private String lastName;
 
   public String getFirstName() {
     return this.firstName;
   }
 
+  public void setFirstName(final String firstName) {
+    this.firstName = firstName;
+  }
+
   public String getLastName() {
     return this.lastName;
+  }
+
+  public void setLastName(final String lastName) {
+    this.lastName = lastName;
   }
 
   @Override

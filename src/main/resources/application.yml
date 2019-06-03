@@ -1,3 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:hsqldb:file:svj-evidence
+  jpa:
+    hibernate:
+      ddl-auto: update
+
 logging:
   level:
     eu: trace

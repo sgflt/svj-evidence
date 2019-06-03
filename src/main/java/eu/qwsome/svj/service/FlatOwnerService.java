@@ -26,6 +26,8 @@ public class FlatOwnerService {
 
   public ObservableList<FlatOwner> findAll() {
     LOG.trace("findAll()");
+    this.flatOwners.removeAll(this.flatOwners);
+    this.flatOwners.addAll(this.flatOwnerRepository.findAll());
     return this.flatOwners;
   }
 
