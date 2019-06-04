@@ -1,4 +1,4 @@
-package eu.qwsome.svj.view;
+package eu.qwsome.svj.shared.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

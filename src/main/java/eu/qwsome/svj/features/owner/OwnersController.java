@@ -1,9 +1,7 @@
-package eu.qwsome.svj.controller;
+package eu.qwsome.svj.features.owner;
 
-import eu.qwsome.svj.entity.FlatOwner;
-import eu.qwsome.svj.service.FlatOwnerService;
-import eu.qwsome.svj.view.SceneManager;
-import eu.qwsome.svj.view.View;
+import eu.qwsome.svj.shared.view.SceneManager;
+import eu.qwsome.svj.shared.view.View;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -17,7 +15,7 @@ import org.springframework.stereotype.Controller;
  * @author Lukáš Kvídera
  */
 @Controller
-public class OwnersController {
+class OwnersController {
 
   private final FlatOwnerService flatOwnerService;
   private final SceneManager sceneManager;

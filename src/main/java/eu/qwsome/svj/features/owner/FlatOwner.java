@@ -1,4 +1,4 @@
-package eu.qwsome.svj.entity;
+package eu.qwsome.svj.features.owner;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +22,7 @@ public class FlatOwner {
     return this.firstName;
   }
 
-  public void setFirstName(final String firstName) {
+  void setFirstName(final String firstName) {
     this.firstName = firstName;
   }
 
@@ -30,7 +30,7 @@ public class FlatOwner {
     return this.lastName;
   }
 
-  public void setLastName(final String lastName) {
+  void setLastName(final String lastName) {
     this.lastName = lastName;
   }
 

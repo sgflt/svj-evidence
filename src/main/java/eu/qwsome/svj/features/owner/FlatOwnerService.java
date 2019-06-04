@@ -1,7 +1,5 @@
-package eu.qwsome.svj.service;
+package eu.qwsome.svj.features.owner;
 
-import eu.qwsome.svj.entity.FlatOwner;
-import eu.qwsome.svj.repository.FlatOwnerRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.slf4j.Logger;
@@ -12,7 +10,7 @@ import org.springframework.stereotype.Service;
  * @author Lukáš Kvídera
  */
 @Service
-public class FlatOwnerService {
+class FlatOwnerService {
 
   private static final Logger LOG = LoggerFactory.getLogger(FlatOwnerService.class);
 
@@ -24,14 +22,14 @@ public class FlatOwnerService {
     this.flatOwners = FXCollections.observableList(this.flatOwnerRepository.findAll());
   }
 
-  public ObservableList<FlatOwner> findAll() {
+  ObservableList<FlatOwner> findAll() {
     LOG.trace("findAll()");
     this.flatOwners.removeAll(this.flatOwners);
     this.flatOwners.addAll(this.flatOwnerRepository.findAll());
     return this.flatOwners;
   }
 
-  public void save(final FlatOwner flatOwner) {
+  void save(final FlatOwner flatOwner) {
     LOG.debug("save(flatOwner={}", flatOwner);
     this.flatOwnerRepository.save(flatOwner);
   }

@@ -1,4 +1,4 @@
-package eu.qwsome.svj.view;
+package eu.qwsome.svj.shared.view;
 
 /**
  * @author Lukáš Kvídera

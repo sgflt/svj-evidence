@@ -1,9 +1,7 @@
-package eu.qwsome.svj.controller;
+package eu.qwsome.svj.features.owner;
 
-import eu.qwsome.svj.entity.FlatOwner;
-import eu.qwsome.svj.service.FlatOwnerService;
-import eu.qwsome.svj.view.SceneManager;
-import eu.qwsome.svj.view.View;
+import eu.qwsome.svj.shared.view.SceneManager;
+import eu.qwsome.svj.shared.view.View;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -15,7 +13,7 @@ import org.springframework.stereotype.Controller;
  * @author Lukáš Kvídera
  */
 @Controller
-public class EditFlatOwnerController {
+class EditFlatOwnerController {
 
   private static final Logger LOG = LoggerFactory.getLogger(EditFlatOwnerController.class);
 
