@@ -23,6 +23,7 @@ public class SceneManager {
     this.context = context;
     this.viewMapping.put(View.MAIN, SceneManager.class.getResource("/mainPage.fxml"));
     this.viewMapping.put(View.FLAT_OWNER_EDIT, SceneManager.class.getResource("/flatOwnerEdit.fxml"));
+    this.viewMapping.put(View.FLAT_EDIT, SceneManager.class.getResource("/flatEdit.fxml"));
   }
 
   public void switchTo(final View view, final Scene scene) {

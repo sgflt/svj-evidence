@@ -16,7 +16,7 @@ import org.springframework.stereotype.Controller;
  * @author Lukáš Kvídera
  */
 @Controller
-class OwnersController {
+public class FlatOwnerController {
 
   private final FlatOwnerService flatOwnerService;
   private final SceneManager sceneManager;
@@ -29,7 +29,7 @@ class OwnersController {
   private TableView<FlatOwner> ownersTableView;
 
   @Autowired
-  public OwnersController(final FlatOwnerService flatOwnerService, final SceneManager sceneManager) {
+  public FlatOwnerController(final FlatOwnerService flatOwnerService, final SceneManager sceneManager) {
     this.flatOwnerService = flatOwnerService;
     this.sceneManager = sceneManager;
   }

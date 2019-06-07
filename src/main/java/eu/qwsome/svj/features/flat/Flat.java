@@ -1,4 +1,4 @@
-package eu.qwsome.svj.features.owner;
+package eu.qwsome.svj.features.flat;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -16,12 +16,12 @@ import javax.persistence.Id;
  */
 @Entity
 @DynamicUpdate
-public class FlatOwner {
+public class Flat {
 
   private final IntegerProperty id = new SimpleIntegerProperty();
 
-  private final StringProperty firstName = new SimpleStringProperty();
-  private final StringProperty lastName = new SimpleStringProperty();
+  private final StringProperty number = new SimpleStringProperty();
+  private final StringProperty address = new SimpleStringProperty();
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,27 +33,27 @@ public class FlatOwner {
     this.id.set(id);
   }
 
-  public final String getFirstName() {
-    return this.firstName.get();
+  public final String getNumber() {
+    return this.number.get();
   }
 
-  final void setFirstName(final String firstName) {
-    this.firstName.set(firstName);
+  final void setNumber(final String number) {
+    this.number.set(number);
   }
 
-  public final String getLastName() {
-    return this.lastName.get();
+  public final String getAddress() {
+    return this.address.get();
   }
 
-  void setLastName(final String lastName) {
-    this.lastName.set(lastName);
+  void setAddress(final String address) {
+    this.address.set(address);
   }
 
   @Override
   public String toString() {
     return "Flat{" +
-      "firstName='" + this.firstName + '\'' +
-      ", lastName='" + this.lastName + '\'' +
+      "number='" + this.number + '\'' +
+      ", address='" + this.address + '\'' +
       '}';
   }
 }
