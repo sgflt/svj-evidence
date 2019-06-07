@@ -29,6 +29,6 @@ public class MainController {
 
   @FXML
   public void onCreateFlat() {
-    this.sceneManager.switchTo(View.FLAT_EDIT, this.addFlatOwnerButton.getScene());
+    this.sceneManager.switchTo(View.FLAT_CREATE, this.addFlatOwnerButton.getScene());
   }
 }
