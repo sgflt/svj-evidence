@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -13,7 +12,7 @@
         <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
           <children>
             <ListView prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" fx:id="flatList"/>
-            <TextArea prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" fx:id="flatDetail"/>
+            <fx:include source="ownersOfFlatView.fxml"/>
           </children>
         </HBox>
       </center>

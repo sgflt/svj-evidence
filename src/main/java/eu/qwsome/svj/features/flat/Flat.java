@@ -33,15 +33,15 @@ public class Flat {
     this.id.set(id);
   }
 
-  public final String getNumber() {
+  public String getNumber() {
     return this.number.get();
   }
 
-  final void setNumber(final String number) {
+  void setNumber(final String number) {
     this.number.set(number);
   }
 
-  public final String getAddress() {
+  public String getAddress() {
     return this.address.get();
   }
 

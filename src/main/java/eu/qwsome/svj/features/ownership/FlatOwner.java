@@ -1,30 +1,28 @@
-package eu.qwsome.svj.features.owner;
+package eu.qwsome.svj.features.ownership;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 /**
  * @author Lukáš Kvídera
  */
 @Entity
-@DynamicUpdate
 public class FlatOwner {
 
   private final IntegerProperty id = new SimpleIntegerProperty();
 
   private final StringProperty firstName = new SimpleStringProperty();
   private final StringProperty lastName = new SimpleStringProperty();
+  private List<Flat> flats;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   public int getId() {
     return this.id.get();
   }
@@ -47,6 +45,15 @@ public class FlatOwner {
 
   void setLastName(final String lastName) {
     this.lastName.set(lastName);
+  }
+
+  @ManyToMany(mappedBy = "owners")
+  public List<Flat> getFlats() {
+    return this.flats;
+  }
+
+  public void setFlats(final List<Flat> flats) {
+    this.flats = flats;
   }
 
   @Override

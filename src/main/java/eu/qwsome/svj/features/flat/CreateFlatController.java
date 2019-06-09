@@ -13,9 +13,9 @@ import org.springframework.stereotype.Controller;
  * @author Lukáš Kvídera
  */
 @Controller
-public class CreateFlaController {
+public class CreateFlatController {
 
-  private static final Logger LOG = LoggerFactory.getLogger(CreateFlaController.class);
+  private static final Logger LOG = LoggerFactory.getLogger(CreateFlatController.class);
 
 
   private final FlatService flatService;
@@ -30,7 +30,7 @@ public class CreateFlaController {
   @FXML
   private Button saveFlatButton;
 
-  public CreateFlaController(final FlatService flatService, final SceneManager sceneManager) {
+  public CreateFlatController(final FlatService flatService, final SceneManager sceneManager) {
     this.flatService = flatService;
     this.sceneManager = sceneManager;
   }
