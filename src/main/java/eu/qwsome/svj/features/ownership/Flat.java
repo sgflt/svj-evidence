@@ -3,11 +3,10 @@ package eu.qwsome.svj.features.ownership;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class Flat {
   private String address;
 
 
-  private List<FlatOwner> owners;
+  private List<Ownership> ownerships;
 
   @Id
   public int getId() {
@@ -51,18 +50,22 @@ public class Flat {
     this.address = address;
   }
 
-  @ManyToMany
-  @JoinTable(
-    name = "ownership",
-    joinColumns = @JoinColumn(name = "flat_id"),
-    inverseJoinColumns = @JoinColumn(name = "owner_id")
+  @OneToMany(
+    mappedBy = "flat",
+    cascade = CascadeType.ALL
   )
-  public List<FlatOwner> getOwners() {
-    return this.owners;
+  public List<Ownership> getOwnerships() {
+    return this.ownerships;
   }
 
-  public void setOwners(final List<FlatOwner> owners) {
-    this.owners = owners;
+  public void setOwnerships(final List<Ownership> ownerships) {
+    this.ownerships = ownerships;
+  }
+
+
+  public void addOwner(final FlatOwner owner, final Character ownershipType) {
+    final Ownership ownership = new Ownership(this, owner, ownershipType);
+    getOwnerships().add(ownership);
   }
 
   @Override
@@ -71,7 +74,7 @@ public class Flat {
       "id=" + this.id +
       ", number=" + this.number +
       ", address=" + this.address +
-      ", owners=" + this.owners +
+      ", ownerships=" + this.ownerships +
       '}';
   }
 }

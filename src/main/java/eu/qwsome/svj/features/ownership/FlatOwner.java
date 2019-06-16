@@ -1,59 +1,45 @@
 package eu.qwsome.svj.features.ownership;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.List;
+import javax.persistence.Table;
 
 /**
  * @author Lukáš Kvídera
  */
-@Entity
+@Entity(name = "flat_owner_for_ownership")
+@Table(name = "flat_owner")
 public class FlatOwner {
 
-  private final IntegerProperty id = new SimpleIntegerProperty();
-
-  private final StringProperty firstName = new SimpleStringProperty();
-  private final StringProperty lastName = new SimpleStringProperty();
-  private List<Flat> flats;
-
   @Id
+  private Integer id;
+
+  private String firstName;
+  private String lastName;
+
+
   public int getId() {
-    return this.id.get();
+    return this.id;
   }
 
   public void setId(final int id) {
-    this.id.set(id);
+    this.id = id;
   }
 
   public String getFirstName() {
-    return this.firstName.get();
+    return this.firstName;
   }
 
   void setFirstName(final String firstName) {
-    this.firstName.set(firstName);
+    this.firstName = firstName;
   }
 
   public String getLastName() {
-    return this.lastName.get();
+    return this.lastName;
   }
 
   void setLastName(final String lastName) {
-    this.lastName.set(lastName);
-  }
-
-  @ManyToMany(mappedBy = "owners")
-  public List<Flat> getFlats() {
-    return this.flats;
-  }
-
-  public void setFlats(final List<Flat> flats) {
-    this.flats = flats;
+    this.lastName = lastName;
   }
 
   @Override
