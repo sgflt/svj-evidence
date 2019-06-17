@@ -26,6 +26,12 @@ public class FlatOwnerController {
   @FXML
   private TableColumn<FlatOwner, String> flatOwnerLastNameTableColumn;
   @FXML
+  private TableColumn<FlatOwner, String> flatOwnerAnotherNamesTableColumn;
+  @FXML
+  private TableColumn<FlatOwner, String> flatOwnerPhoneTableColumn;
+  @FXML
+  private TableColumn<FlatOwner, String> flatOwnerEmailTableColumn;
+  @FXML
   private TableView<FlatOwner> ownersTableView;
 
   @Autowired
@@ -56,6 +62,42 @@ public class FlatOwnerController {
           .getItems()
           .get(event.getTablePosition().getRow());
         flatOwner.setLastName(event.getNewValue());
+        this.flatOwnerService.save(flatOwner);
+      }
+    );
+
+    this.flatOwnerAnotherNamesTableColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    this.flatOwnerAnotherNamesTableColumn.setCellValueFactory(new PropertyValueFactory<>("anotherNames"));
+    this.flatOwnerAnotherNamesTableColumn.setOnEditCommit(
+      event -> {
+        final FlatOwner flatOwner = event.getTableView()
+          .getItems()
+          .get(event.getTablePosition().getRow());
+        flatOwner.setAnotherNames(event.getNewValue());
+        this.flatOwnerService.save(flatOwner);
+      }
+    );
+
+    this.flatOwnerPhoneTableColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    this.flatOwnerPhoneTableColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+    this.flatOwnerPhoneTableColumn.setOnEditCommit(
+      event -> {
+        final FlatOwner flatOwner = event.getTableView()
+          .getItems()
+          .get(event.getTablePosition().getRow());
+        flatOwner.setPhone(event.getNewValue());
+        this.flatOwnerService.save(flatOwner);
+      }
+    );
+
+    this.flatOwnerEmailTableColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    this.flatOwnerEmailTableColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
+    this.flatOwnerEmailTableColumn.setOnEditCommit(
+      event -> {
+        final FlatOwner flatOwner = event.getTableView()
+          .getItems()
+          .get(event.getTablePosition().getRow());
+        flatOwner.setEmail(event.getNewValue());
         this.flatOwnerService.save(flatOwner);
       }
     );

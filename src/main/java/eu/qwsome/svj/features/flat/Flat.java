@@ -1,9 +1,5 @@
 package eu.qwsome.svj.features.flat;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
@@ -18,35 +14,36 @@ import javax.persistence.Id;
 @DynamicUpdate
 public class Flat {
 
-  private final IntegerProperty id = new SimpleIntegerProperty();
-
-  private final StringProperty number = new SimpleStringProperty();
-  private final StringProperty address = new SimpleStringProperty();
-
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
+
+  private String number;
+  private String address;
+
+
   public int getId() {
-    return this.id.get();
+    return this.id;
   }
 
-  public void setId(final int id) {
-    this.id.set(id);
+  void setId(final int id) {
+    this.id = id;
   }
 
   public String getNumber() {
-    return this.number.get();
+    return this.number;
   }
 
   void setNumber(final String number) {
-    this.number.set(number);
+    this.number = number;
   }
 
   public String getAddress() {
-    return this.address.get();
+    return this.address;
   }
 
   void setAddress(final String address) {
-    this.address.set(address);
+    this.address = address;
   }
 
   @Override
