@@ -49,7 +49,18 @@ public class OwnershipService {
       ownership.getFlat().getAddress(),
       FXCollections.observableList(
         ownership.getFlat().getOwnerships().stream()
-          .map(ownerhsip -> new OwnerDto(ownerhsip.getFlatOwner().getId(), ownerhsip.getFlatOwner().getFirstName(), ownerhsip.getFlatOwner().getLastName()))
+          .map(
+            ownerhsip -> new OwnerDto(
+              ownerhsip.getFlatOwner().getId(),
+              ownerhsip.getFlatOwner().getFirstName(),
+              ownerhsip.getFlatOwner().getLastName(),
+              ownerhsip.getFlatOwner().getAnotherNames(),
+              ownerhsip.getFlatOwner().getBirthDate(),
+              ownerhsip.getFlatOwner().getEmail(),
+              ownerhsip.getFlatOwner().getPhone(),
+              ownerhsip.getFlatOwner().getNotice()
+            )
+          )
           .collect(Collectors.toList())
       )
     );
@@ -83,7 +94,18 @@ public class OwnershipService {
   public ObservableList<OwnerDto> findAllOwners() {
     return this.flatOwnerRepository.findAll()
       .stream()
-      .map(owner -> new OwnerDto(owner.getId(), owner.getFirstName(), owner.getLastName()))
+      .map(
+        owner -> new OwnerDto(
+          owner.getId(),
+          owner.getFirstName(),
+          owner.getLastName(),
+          owner.getAnotherNames(),
+          owner.getBirthDate(),
+          owner.getEmail(),
+          owner.getPhone(),
+          owner.getNotice()
+        )
+      )
       .collect(Collectors.toCollection(FXCollections::observableArrayList))
       ;
   }
