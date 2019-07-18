@@ -22,11 +22,11 @@ public class Flat {
   private String address;
 
 
-  public int getId() {
+  public Integer getId() {
     return this.id;
   }
 
-  void setId(final int id) {
+  void setId(final Integer id) {
     this.id = id;
   }
 

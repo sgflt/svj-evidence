@@ -28,11 +28,11 @@ public class FlatOwner {
   private String phone;
 
 
-  public int getId() {
+  public Integer getId() {
     return this.id;
   }
 
-  public void setId(final int id) {
+  public void setId(final Integer id) {
     this.id = id;
   }
 
