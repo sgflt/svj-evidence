@@ -3,7 +3,7 @@ spring:
     url: jdbc:hsqldb:file:svj-evidence
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     show-sql: true
 
 logging:
