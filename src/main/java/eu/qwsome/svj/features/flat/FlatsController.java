@@ -55,8 +55,10 @@ public class FlatsController {
         }
       });
     this.flatList.setOnMouseClicked(event -> {
-      final int id = this.flatList.getSelectionModel().getSelectedItem().getId();
-      this.ownershipController.displayOwnershipFor(id);
+      final Flat selectedItem = this.flatList.getSelectionModel().getSelectedItem();
+      if (selectedItem != null) {
+        this.ownershipController.displayOwnershipFor(selectedItem.getId());
+      }
     });
 
   }
