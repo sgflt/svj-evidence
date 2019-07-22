@@ -1,36 +1,32 @@
 package eu.qwsome.svj.features.ownership;
 
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.ObservableList;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 /**
  * @author Lukáš Kvídera
  */
-public class OwnershipDto {
-  private final StringProperty address;
-  private final ListProperty<OwnerDto> owners;
+class OwnershipDto {
+  private final ObjectProperty<OwnerDto> owner;
+  private final ObjectProperty<OwnershipType> ownershipType;
 
-  OwnershipDto(final String address, final ObservableList<OwnerDto> owners) {
-    this.address = new SimpleStringProperty(address);
-    this.owners = new SimpleListProperty<>(owners);
+  OwnershipDto(final OwnerDto owner, final OwnershipType ownershipType) {
+    this.owner = new SimpleObjectProperty<>(owner);
+    this.ownershipType = new SimpleObjectProperty<>(ownershipType);
   }
 
-  StringProperty getAddress() {
-    return this.address;
+  OwnerDto getOwner() {
+    return this.owner.get();
   }
 
-  public ListProperty<OwnerDto> getOwners() {
-    return this.owners;
+  OwnershipType getOwnershipType() {
+    return this.ownershipType.get();
   }
 
   @Override
   public String toString() {
     return "OwnershipDto{" +
-      "address='" + this.address + '\'' +
-      ", owners='" + this.owners + '\'' +
+      ", owners='" + this.owner + '\'' +
       '}';
   }
 }

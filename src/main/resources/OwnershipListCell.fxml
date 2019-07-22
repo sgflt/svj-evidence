@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:id="ownershipCell" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <Label fx:id="ownerFirstNameLabel" HBox.hgrow="SOMETIMES">
+      <padding>
+        <Insets right="10.0" />
+      </padding>
+    </Label>
+    <Label fx:id="ownerLastNameLabel" HBox.hgrow="SOMETIMES" />
+    <Label fx:id="ownershipTypeLabel" HBox.hgrow="SOMETIMES">
+      <padding>
+        <Insets right="10.0" />
+      </padding>
+    </Label>
+  </children>
+</HBox>

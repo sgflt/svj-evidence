@@ -1,6 +1,7 @@
 package eu.qwsome.svj.features.ownership;
 
-import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
@@ -10,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import java.util.Optional;
+import java.util.Arrays;
 
 
 /**
@@ -24,9 +25,12 @@ public class OwnershipController {
   private final OwnershipService ownershipService;
 
   @FXML
-  private ListView<OwnerDto> listOfOwners;
+  private ListView<OwnershipDto> listOfOwners;
   @FXML
   private ComboBox<OwnerDto> ownerToAddComboBox;
+
+  @FXML
+  private ComboBox<OwnershipType> typeOfOwnershipComboBox;
 
   private int flatId;
   private OwnerDto currentlySelectedOwnerToAdd;
@@ -39,25 +43,14 @@ public class OwnershipController {
   @FXML
   public void initialize() {
     LOG.trace("initialize()");
+    this.typeOfOwnershipComboBox.setItems(FXCollections.observableList(Arrays.asList(OwnershipType.values())));
   }
 
   public void displayOwnershipFor(final int id) {
     this.flatId = id;
-    final Optional<OwnershipDto> ownersOfFlat = this.ownershipService.findByFlatId(id);
-    this.listOfOwners.setItems(ownersOfFlat.map(OwnershipDto::getOwners).orElseGet(SimpleListProperty::new));
-    this.listOfOwners.setCellFactory(param ->
-      new ListCell<>() {
-        @Override
-        public void updateItem(final OwnerDto item, final boolean empty) {
-          LOG.debug("updateItem(item={}, empty={}", item, empty);
-          super.updateItem(item, empty);
-          if (empty) {
-            setText(null);
-          } else {
-            setText(item.getFirstName());
-          }
-        }
-      });
+    final ObservableList<OwnershipDto> ownersOfFlat = this.ownershipService.findByFlatId(id);
+    this.listOfOwners.setItems(ownersOfFlat);
+    this.listOfOwners.setCellFactory(param -> new OwnershipListCell());
 
     this.ownerToAddComboBox.setItems(this.ownershipService.findAllOwners());
     this.ownerToAddComboBox.setButtonCell(getComboBoxListCell());
@@ -89,7 +82,22 @@ public class OwnershipController {
   }
 
   public void addOwnerToFlat() {
-    this.ownershipService.addOwnerTo(this.flatId, this.currentlySelectedOwnerToAdd.getId());
-    this.listOfOwners.getItems().add(this.currentlySelectedOwnerToAdd);
+    final OwnershipType ownershipType = this.typeOfOwnershipComboBox.getSelectionModel().getSelectedItem();
+    this.ownershipService.addOwnerTo(this.flatId, this.currentlySelectedOwnerToAdd.getId(), ownershipType);
+    this.listOfOwners.getItems().add(
+      new OwnershipDto(
+        new OwnerDto(
+          this.currentlySelectedOwnerToAdd.getId(),
+          this.currentlySelectedOwnerToAdd.getFirstName(),
+          this.currentlySelectedOwnerToAdd.getLastName(),
+          this.currentlySelectedOwnerToAdd.getAnotherNames(),
+          this.currentlySelectedOwnerToAdd.getBirthDate(),
+          this.currentlySelectedOwnerToAdd.getEmail(),
+          this.currentlySelectedOwnerToAdd.getPhone(),
+          this.currentlySelectedOwnerToAdd.getNotice()
+        ),
+        ownershipType
+      )
+    );
   }
 }

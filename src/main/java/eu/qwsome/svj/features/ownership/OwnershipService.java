@@ -46,23 +46,17 @@ public class OwnershipService {
 
   private static OwnershipDto map(final Ownership ownership) {
     return new OwnershipDto(
-      ownership.getFlat().getAddress(),
-      FXCollections.observableList(
-        ownership.getFlat().getOwnerships().stream()
-          .map(
-            ownerhsip -> new OwnerDto(
-              ownerhsip.getFlatOwner().getId(),
-              ownerhsip.getFlatOwner().getFirstName(),
-              ownerhsip.getFlatOwner().getLastName(),
-              ownerhsip.getFlatOwner().getAnotherNames(),
-              ownerhsip.getFlatOwner().getBirthDate(),
-              ownerhsip.getFlatOwner().getEmail(),
-              ownerhsip.getFlatOwner().getPhone(),
-              ownerhsip.getFlatOwner().getNotice()
-            )
-          )
-          .collect(Collectors.toList())
-      )
+      new OwnerDto(
+        ownership.getFlatOwner().getId(),
+        ownership.getFlatOwner().getFirstName(),
+        ownership.getFlatOwner().getLastName(),
+        ownership.getFlatOwner().getAnotherNames(),
+        ownership.getFlatOwner().getBirthDate(),
+        ownership.getFlatOwner().getEmail(),
+        ownership.getFlatOwner().getPhone(),
+        ownership.getFlatOwner().getNotice()
+      ),
+      OwnershipType.parse(ownership.getOwnershipType())
     );
   }
 
@@ -73,15 +67,15 @@ public class OwnershipService {
     return this.ownerships;
   }
 
-  public Optional<OwnershipDto> findByFlatId(final int id) {
+  public ObservableList<OwnershipDto> findByFlatId(final int id) {
     LOG.trace("findFlatById(id={})", id);
     final Example<Ownership> example = createExampleForFlatId(id);
 
     final List<Ownership> all = this.ownershipRepository.findAll(example);
     return all
       .stream()
-      .findAny()
-      .map(OwnershipService::map);
+      .map(OwnershipService::map)
+      .collect(Collectors.toCollection(FXCollections::observableArrayList));
   }
 
   private static Example<Ownership> createExampleForFlatId(final int id) {
@@ -110,12 +104,12 @@ public class OwnershipService {
       ;
   }
 
-  public void addOwnerTo(final int flatId, final int ownerId) {
+  public void addOwnerTo(final int flatId, final int ownerId, final OwnershipType ownershipType) {
     LOG.debug("addOwnerTo(flatId={}, ownerID={}", flatId, ownerId);
     final Optional<FlatOwner> ownerToAdd = this.flatOwnerRepository.findById(ownerId);
     final Optional<Flat> flatToModify = this.flatRepository.findById(flatId);
     if (flatToModify.isPresent() && ownerToAdd.isPresent()) {
-      flatToModify.get().addOwner(ownerToAdd.get(), 'O');
+      flatToModify.get().addOwner(ownerToAdd.get(), ownershipType.getCode());
     }
   }
 }
