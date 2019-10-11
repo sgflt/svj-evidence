@@ -1,4 +1,4 @@
-package eu.qwsome.svj.features.ownership;
+package eu.qwsome.svj.model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -38,7 +38,7 @@ public class Flat {
     return this.number;
   }
 
-  void setNumber(final String number) {
+  public void setNumber(final String number) {
     this.number = number;
   }
 
@@ -46,7 +46,7 @@ public class Flat {
     return this.address;
   }
 
-  void setAddress(final String address) {
+  public void setAddress(final String address) {
     this.address = address;
   }
 
@@ -74,7 +74,6 @@ public class Flat {
       "id=" + this.id +
       ", number=" + this.number +
       ", address=" + this.address +
-      ", ownerships=" + this.ownerships +
       '}';
   }
 }

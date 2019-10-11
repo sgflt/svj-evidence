@@ -1,5 +1,11 @@
 package eu.qwsome.svj.features.ownership;
 
+import eu.qwsome.svj.model.Flat;
+import eu.qwsome.svj.model.FlatOwner;
+import eu.qwsome.svj.model.FlatOwnerRepository;
+import eu.qwsome.svj.model.FlatRepository;
+import eu.qwsome.svj.model.Ownership;
+import eu.qwsome.svj.model.OwnershipRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.slf4j.Logger;

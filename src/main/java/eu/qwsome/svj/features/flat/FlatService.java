@@ -1,5 +1,7 @@
 package eu.qwsome.svj.features.flat;
 
+import eu.qwsome.svj.model.Flat;
+import eu.qwsome.svj.model.FlatRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.slf4j.Logger;

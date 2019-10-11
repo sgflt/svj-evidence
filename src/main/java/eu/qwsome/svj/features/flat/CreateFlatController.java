@@ -1,5 +1,6 @@
 package eu.qwsome.svj.features.flat;
 
+import eu.qwsome.svj.model.Flat;
 import eu.qwsome.svj.shared.view.SceneManager;
 import eu.qwsome.svj.shared.view.View;
 import javafx.fxml.FXML;

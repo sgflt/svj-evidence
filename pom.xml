@@ -73,6 +73,10 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.2</version>
                 <configuration>
+                    <stripDebug>true</stripDebug>
+                    <compress>2</compress>
+                    <noHeaderFiles>true</noHeaderFiles>
+                    <noManPages>true</noManPages>
                     <mainClass>eu.qwsome.svj.Main</mainClass>
                 </configuration>
             </plugin>

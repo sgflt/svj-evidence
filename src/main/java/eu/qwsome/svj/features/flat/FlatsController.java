@@ -1,6 +1,7 @@
 package eu.qwsome.svj.features.flat;
 
 import eu.qwsome.svj.features.ownership.OwnershipController;
+import eu.qwsome.svj.model.Flat;
 import eu.qwsome.svj.shared.view.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;

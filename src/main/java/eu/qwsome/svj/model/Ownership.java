@@ -1,4 +1,6 @@
-package eu.qwsome.svj.features.ownership;
+package eu.qwsome.svj.model;
+
+import eu.qwsome.svj.features.ownership.OwnershipPrimaryKey;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;

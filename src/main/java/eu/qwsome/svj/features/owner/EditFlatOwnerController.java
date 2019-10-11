@@ -1,5 +1,6 @@
 package eu.qwsome.svj.features.owner;
 
+import eu.qwsome.svj.model.FlatOwner;
 import eu.qwsome.svj.shared.view.SceneManager;
 import eu.qwsome.svj.shared.view.View;
 import javafx.fxml.FXML;

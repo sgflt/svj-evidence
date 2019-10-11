@@ -1,10 +1,10 @@
-package eu.qwsome.svj.features.flat;
+package eu.qwsome.svj.model;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
  * @author Lukáš Kvídera
  */
-interface FlatRepository extends JpaRepository<Flat, Integer> {
+public interface FlatRepository extends JpaRepository<Flat, Integer> {
 
 }

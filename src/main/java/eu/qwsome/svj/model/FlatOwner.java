@@ -1,4 +1,4 @@
-package eu.qwsome.svj.features.owner;
+package eu.qwsome.svj.model;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -40,7 +40,7 @@ public class FlatOwner {
     return this.firstName;
   }
 
-  void setFirstName(final String firstName) {
+  public void setFirstName(final String firstName) {
     this.firstName = firstName;
   }
 
@@ -48,7 +48,7 @@ public class FlatOwner {
     return this.lastName;
   }
 
-  void setLastName(final String lastName) {
+  public void setLastName(final String lastName) {
     this.lastName = lastName;
   }
 
@@ -56,7 +56,7 @@ public class FlatOwner {
     return this.anotherNames;
   }
 
-  void setAnotherNames(final String anotherNames) {
+  public void setAnotherNames(final String anotherNames) {
     this.anotherNames = anotherNames;
   }
 
@@ -72,7 +72,7 @@ public class FlatOwner {
     return this.email;
   }
 
-  void setEmail(final String email) {
+  public void setEmail(final String email) {
     this.email = email;
   }
 
@@ -88,7 +88,7 @@ public class FlatOwner {
     return this.phone;
   }
 
-  void setPhone(final String phone) {
+  public void setPhone(final String phone) {
     this.phone = phone;
   }
 
