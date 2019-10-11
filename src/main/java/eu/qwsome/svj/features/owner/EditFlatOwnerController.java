@@ -5,6 +5,7 @@ import eu.qwsome.svj.shared.view.SceneManager;
 import eu.qwsome.svj.shared.view.View;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,10 +25,16 @@ class EditFlatOwnerController {
 
   @FXML
   private TextField firstNameInput;
-
   @FXML
   private TextField lastNameInput;
-
+  @FXML
+  private TextField anotherNamesInput;
+  @FXML
+  private TextField emailInput;
+  @FXML
+  private TextField phoneInput;
+  @FXML
+  private TextArea noteInput;
   @FXML
   private Button saveFlatOwnerButton;
 
@@ -43,6 +50,10 @@ class EditFlatOwnerController {
     final FlatOwner flatOwner = new FlatOwner();
     flatOwner.setFirstName(this.firstNameInput.getText());
     flatOwner.setLastName(this.lastNameInput.getText());
+    flatOwner.setEmail(this.emailInput.getText());
+    flatOwner.setAnotherNames(this.anotherNamesInput.getText());
+    flatOwner.setPhone(this.phoneInput.getText());
+    flatOwner.setNotice(this.noteInput.getText());
     this.flatOwnerService.save(flatOwner);
     this.sceneManager.switchTo(View.MAIN, this.saveFlatOwnerButton.getScene());
   }
