@@ -3,16 +3,18 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.qwsome.svj.features.owner.FlatOwnerController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="eu.qwsome.svj.features.owner.FlatOwnerController">
   <children>
-    <TableView fx:id="ownersTableView" prefHeight="180.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <TableView fx:id="ownersTableView" prefHeight="180.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <columns>
-        <TableColumn fx:id="flatOwnerNameTableColumn" prefWidth="75.0" text="Jméno" />
-        <TableColumn fx:id="flatOwnerLastNameTableColumn" prefWidth="75.0" text="Příjmení" />
-            <TableColumn fx:id="flatOwnerAnotherNamesTableColumn" prefWidth="75.0" text="Další jména" />
-            <TableColumn fx:id="flatOwnerEmailTableColumn" prefWidth="75.0" text="Email" />
-            <TableColumn fx:id="flatOwnerPhoneTableColumn" prefWidth="75.0" text="Telefon" />
+        <TableColumn fx:id="flatOwnerNameTableColumn" prefWidth="100.0" text="Jméno"/>
+        <TableColumn fx:id="flatOwnerLastNameTableColumn" prefWidth="100.0" text="Příjmení"/>
+        <TableColumn fx:id="flatOwnerAnotherNamesTableColumn" prefWidth="100.0" text="Další jména"/>
+        <TableColumn fx:id="flatOwnerEmailTableColumn" prefWidth="75.0" text="Email"/>
+        <TableColumn fx:id="flatOwnerPhoneTableColumn" prefWidth="75.0" text="Telefon"/>
+        <TableColumn fx:id="flatOwnerNoteTableColumn" prefWidth="300.0" text="Poznámka"/>
       </columns>
     </TableView>
   </children>

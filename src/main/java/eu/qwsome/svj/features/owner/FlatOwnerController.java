@@ -34,6 +34,8 @@ public class FlatOwnerController {
   @FXML
   private TableColumn<FlatOwner, String> flatOwnerEmailTableColumn;
   @FXML
+  private TableColumn<FlatOwner, String> flatOwnerNoteTableColumn;
+  @FXML
   private TableView<FlatOwner> ownersTableView;
 
   @Autowired
@@ -97,6 +99,16 @@ public class FlatOwnerController {
       event -> {
         final FlatOwner flatOwner = getSelectedFlatOwner(event);
         flatOwner.setEmail(event.getNewValue());
+        this.flatOwnerService.save(flatOwner);
+      }
+    );
+
+    this.flatOwnerNoteTableColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+    this.flatOwnerNoteTableColumn.setCellValueFactory(new PropertyValueFactory<>("notice"));
+    this.flatOwnerNoteTableColumn.setOnEditCommit(
+      event -> {
+        final FlatOwner flatOwner = getSelectedFlatOwner(event);
+        flatOwner.setNotice(event.getNewValue());
         this.flatOwnerService.save(flatOwner);
       }
     );
