@@ -31,4 +31,9 @@ public class MainController {
   public void onCreateFlat() {
     this.sceneManager.switchTo(View.FLAT_CREATE, this.addFlatOwnerButton.getScene());
   }
+
+  @FXML
+  public void onCreateAddress() {
+    this.sceneManager.switchTo(View.ADDRESS_CREATE, this.addFlatOwnerButton.getScene());
+  }
 }

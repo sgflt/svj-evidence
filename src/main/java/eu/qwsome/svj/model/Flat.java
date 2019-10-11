@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Lukáš Kvídera
  */
-@Entity(name = "flat_for_ownership")
+@Entity
 @Table(name = "flat")
 public class Flat {
 

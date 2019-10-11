@@ -7,5 +7,6 @@ public enum View {
   MAIN,
   FLAT_OWNER_EDIT,
   FLAT_CREATE,
+  ADDRESS_CREATE,
   ;
 }

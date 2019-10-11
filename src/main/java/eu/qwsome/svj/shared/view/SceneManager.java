@@ -24,6 +24,7 @@ public class SceneManager {
     this.viewMapping.put(View.MAIN, SceneManager.class.getResource("/mainPage.fxml"));
     this.viewMapping.put(View.FLAT_OWNER_EDIT, SceneManager.class.getResource("/flatOwnerEdit.fxml"));
     this.viewMapping.put(View.FLAT_CREATE, SceneManager.class.getResource("/flatCreate.fxml"));
+    this.viewMapping.put(View.ADDRESS_CREATE, SceneManager.class.getResource("/addressCreate.fxml"));
   }
 
   public void switchTo(final View view, final Scene scene) {

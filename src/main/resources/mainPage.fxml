@@ -21,6 +21,11 @@
             <fx:include source="flatList.fxml"/>
           </content>
         </Tab>
+        <Tab text="Adresy">
+          <content>
+            <fx:include source="addressList.fxml"/>
+          </content>
+        </Tab>
       </tabs>
     </TabPane>
   </center>
@@ -30,6 +35,7 @@
         <Button fx:id="addFlatOwnerButton" mnemonicParsing="false" onAction="#onCreateFlatOwner"
                 text="Přidat majitele"/>
         <Button fx:id="addFlatButton" mnemonicParsing="false" onAction="#onCreateFlat" text="Přidat byt"/>
+        <Button fx:id="addAddressButton" mnemonicParsing="false" onAction="#onCreateAddress" text="Přidat adresu"/>
       </items>
     </ToolBar>
   </bottom>

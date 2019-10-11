@@ -51,7 +51,7 @@ public class FlatsController {
           if (item == null) {
             setText(null);
           } else {
-            setText(item.getAddress());
+            setText(item.getAddress() + " / Byt. č. " + item.getNumber());
           }
         }
       });
