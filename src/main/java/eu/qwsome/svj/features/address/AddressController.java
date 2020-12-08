@@ -68,7 +68,7 @@ public class AddressController {
     this.municipalityPartColumn.setOnEditCommit(
       event -> {
         final Address flatOwner = getSelectedAddress(event);
-        flatOwner.setMunicipality(event.getNewValue());
+        flatOwner.setMunicipalityPart(event.getNewValue());
         this.service.save(flatOwner);
       }
     );
@@ -78,7 +78,7 @@ public class AddressController {
     this.streetColumn.setOnEditCommit(
       event -> {
         final Address flatOwner = getSelectedAddress(event);
-        flatOwner.setMunicipality(event.getNewValue());
+        flatOwner.setStreet(event.getNewValue());
         this.service.save(flatOwner);
       }
     );
@@ -88,7 +88,7 @@ public class AddressController {
     this.houseNumberColumn.setOnEditCommit(
       event -> {
         final Address flatOwner = getSelectedAddress(event);
-        flatOwner.setMunicipality(event.getNewValue());
+        flatOwner.setHouseNumber(event.getNewValue());
         this.service.save(flatOwner);
       }
     );
