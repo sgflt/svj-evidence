@@ -5,6 +5,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -17,21 +19,25 @@ import java.util.List;
 @Table(name = "flat")
 public class Flat {
 
-  private final IntegerProperty id = new SimpleIntegerProperty();
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
 
   private String number;
-  private String address;
+  private Integer addressId;
 
-
+  @OneToMany(
+    mappedBy = "flat",
+    cascade = CascadeType.ALL
+  )
   private List<Ownership> ownerships;
 
-  @Id
-  public int getId() {
-    return this.id.get();
+  public Integer getId() {
+    return this.id;
   }
 
-  public void setId(final int id) {
-    this.id.set(id);
+  public void setId(final Integer id) {
+    this.id = id;
   }
 
   public String getNumber() {
@@ -42,18 +48,15 @@ public class Flat {
     this.number = number;
   }
 
-  public String getAddress() {
-    return this.address;
+  public Integer getAddressId() {
+    return this.addressId;
   }
 
-  public void setAddress(final String address) {
-    this.address = address;
+  public void setAddressId(final Integer addressId) {
+    this.addressId = addressId;
   }
 
-  @OneToMany(
-    mappedBy = "flat",
-    cascade = CascadeType.ALL
-  )
+
   public List<Ownership> getOwnerships() {
     return this.ownerships;
   }
@@ -73,7 +76,7 @@ public class Flat {
     return "Flat{" +
       "id=" + this.id +
       ", number=" + this.number +
-      ", address=" + this.address +
+      ", address=" + this.addressId +
       '}';
   }
 }

@@ -1,8 +1,9 @@
 package eu.qwsome.svj.features.flat;
 
+import eu.qwsome.svj.features.address.AddressService;
 import eu.qwsome.svj.features.ownership.OwnershipController;
+import eu.qwsome.svj.model.Address;
 import eu.qwsome.svj.model.Flat;
-import eu.qwsome.svj.shared.view.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -21,7 +22,7 @@ public class FlatsController {
   private static final Logger LOG = LoggerFactory.getLogger(FlatsController.class);
 
   private final FlatService flatService;
-  private final SceneManager sceneManager;
+  private AddressService addressService;
   private final OwnershipController ownershipController;
 
   @FXML
@@ -30,12 +31,12 @@ public class FlatsController {
   @Autowired
   public FlatsController(
     final FlatService flatService,
-    final OwnershipController ownershipController,
-    final SceneManager sceneManager
+    AddressService addressService,
+    final OwnershipController ownershipController
   ) {
     this.flatService = flatService;
+    this.addressService = addressService;
     this.ownershipController = ownershipController;
-    this.sceneManager = sceneManager;
   }
 
   @FXML
@@ -51,7 +52,7 @@ public class FlatsController {
           if (item == null) {
             setText(null);
           } else {
-            setText(item.getAddress() + " / Byt. č. " + item.getNumber());
+            setText(addressService.findById(item.getAddressId()).map(Address::asString).orElse("--") + " / Byt. č. " + item.getNumber());
           }
         }
       });

@@ -60,4 +60,8 @@ public class Address {
   public void setHouseNumber(final String houseNumber) {
     this.houseNumber = houseNumber;
   }
+
+  public String asString() {
+    return municipality + ", " + municipalityPart + ", " + street + ", " + houseNumber;
+  }
 }

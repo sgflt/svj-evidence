@@ -16,7 +16,7 @@ import java.util.Optional;
  */
 @Service
 @Transactional
-class AddressService {
+public class AddressService {
 
   private static final Logger LOG = LoggerFactory.getLogger(AddressService.class);
 
@@ -28,7 +28,7 @@ class AddressService {
     this.addresses = FXCollections.observableList(this.repository.findAll());
   }
 
-  ObservableList<Address> findAll() {
+  public ObservableList<Address> findAll() {
     LOG.trace("findAll()");
     this.addresses.removeAll(this.addresses);
     this.addresses.addAll(this.repository.findAll());
@@ -40,7 +40,7 @@ class AddressService {
     this.repository.save(flat);
   }
 
-  Optional<Address> findById(final int id) {
+  public Optional<Address> findById(final int id) {
     return this.repository.findById(id);
   }
 }
