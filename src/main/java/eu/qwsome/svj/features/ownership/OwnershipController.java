@@ -46,17 +46,19 @@ public class OwnershipController {
   public void initialize() {
     LOG.trace("initialize()");
     this.typeOfOwnershipComboBox.setItems(FXCollections.observableList(Arrays.asList(OwnershipType.values())));
+    this.typeOfOwnershipComboBox.setButtonCell(getComboBoxOwnershipTypeCell());
+    this.typeOfOwnershipComboBox.setCellFactory(param -> getComboBoxOwnershipTypeCell());
 
     this.ownerToAddComboBox.setItems(this.ownershipService.findAllOwners());
     this.ownerToAddComboBox.setButtonCell(getComboBoxListCell());
     this.ownerToAddComboBox.setCellFactory(param -> getComboBoxListCell());
     this.ownerToAddComboBox.getSelectionModel().selectedItemProperty().addListener(
-        (observable, oldValue, newValue) -> {
-          LOG.debug("observable={}, oldValue={}, newValue={}", observable, oldValue, newValue);
-          if (newValue != null) {
-            this.currentlySelectedOwnerToAdd = newValue;
-          }
+      (observable, oldValue, newValue) -> {
+        LOG.debug("observable={}, oldValue={}, newValue={}", observable, oldValue, newValue);
+        if (newValue != null) {
+          this.currentlySelectedOwnerToAdd = newValue;
         }
+      }
     );
   }
 
@@ -83,6 +85,20 @@ public class OwnershipController {
           setText(null);
         } else {
           setText(item.getFirstName() + ' ' + item.getLastName());
+        }
+      }
+    };
+  }
+
+  private ListCell<OwnershipType> getComboBoxOwnershipTypeCell() {
+    return new ListCell<>() {
+      @Override
+      public void updateItem(final OwnershipType item, final boolean empty) {
+        LOG.debug("updateItem(item={}, empty={}", item, empty);
+        super.updateItem(item, empty);
+
+        if (!empty) {
+          setText(item.czechName());
         }
       }
     };

@@ -3,13 +3,15 @@ package eu.qwsome.svj.features.ownership;
 import java.util.Objects;
 
 enum OwnershipType {
-  OWNER('O'),
-  COOPERATIVE_SHARE('S');
+  OWNER('O', "Vlastník"),
+  COOPERATIVE_SHARE('S', "Podílník");
 
   private final Character code;
+  private String czechName;
 
-  OwnershipType(final Character code) {
+  OwnershipType(final Character code, final String czechName) {
     this.code = Objects.requireNonNull(code);
+    this.czechName = czechName;
   }
 
   Character getCode() {
@@ -24,5 +26,9 @@ enum OwnershipType {
     }
 
     throw new IllegalArgumentException("Unknown ownership type: " + ownershipTypeToParse);
+  }
+
+  public String czechName() {
+    return this.czechName;
   }
 }
