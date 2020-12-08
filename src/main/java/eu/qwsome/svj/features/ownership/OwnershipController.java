@@ -1,5 +1,6 @@
 package eu.qwsome.svj.features.ownership;
 
+import eu.qwsome.svj.features.owner.event.FlatOwnerUpdated;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.control.ListView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Controller;
 
 import java.util.Arrays;
@@ -44,6 +46,24 @@ public class OwnershipController {
   public void initialize() {
     LOG.trace("initialize()");
     this.typeOfOwnershipComboBox.setItems(FXCollections.observableList(Arrays.asList(OwnershipType.values())));
+
+    this.ownerToAddComboBox.setItems(this.ownershipService.findAllOwners());
+    this.ownerToAddComboBox.setButtonCell(getComboBoxListCell());
+    this.ownerToAddComboBox.setCellFactory(param -> getComboBoxListCell());
+    this.ownerToAddComboBox.getSelectionModel().selectedItemProperty().addListener(
+        (observable, oldValue, newValue) -> {
+          LOG.debug("observable={}, oldValue={}, newValue={}", observable, oldValue, newValue);
+          if (newValue != null) {
+            this.currentlySelectedOwnerToAdd = newValue;
+          }
+        }
+    );
+  }
+
+  @EventListener
+  public void onFlatOwnerUpdated(FlatOwnerUpdated event) {
+    LOG.debug("onFlatownerUpdated(event={})", event);
+    this.ownerToAddComboBox.setItems(this.ownershipService.findAllOwners());
   }
 
   public void displayOwnershipFor(final int id) {
@@ -51,19 +71,6 @@ public class OwnershipController {
     final ObservableList<OwnershipDto> ownersOfFlat = this.ownershipService.findByFlatId(id);
     this.listOfOwners.setItems(ownersOfFlat);
     this.listOfOwners.setCellFactory(param -> new OwnershipListCell());
-
-    this.ownerToAddComboBox.setItems(this.ownershipService.findAllOwners());
-    this.ownerToAddComboBox.setButtonCell(getComboBoxListCell());
-    this.ownerToAddComboBox.setCellFactory(param -> getComboBoxListCell());
-    this.ownerToAddComboBox.getSelectionModel().selectedItemProperty().addListener(
-      (observable, oldValue, newValue) -> {
-        LOG.debug("observable={}, oldValue={}, newValue={}", observable, oldValue, newValue);
-        if (newValue != null) {
-          this.currentlySelectedOwnerToAdd = newValue;
-        }
-      }
-    );
-
   }
 
   private ListCell<OwnerDto> getComboBoxListCell() {
@@ -75,7 +82,7 @@ public class OwnershipController {
         if (empty) {
           setText(null);
         } else {
-          setText(item.getFirstName());
+          setText(item.getFirstName() + ' ' + item.getLastName());
         }
       }
     };
