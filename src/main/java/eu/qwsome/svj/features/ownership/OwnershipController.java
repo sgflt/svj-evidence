@@ -60,6 +60,8 @@ public class OwnershipController {
         }
       }
     );
+
+    this.listOfOwners.setCellFactory(param -> new OwnershipListCell());
   }
 
   @EventListener
@@ -72,7 +74,6 @@ public class OwnershipController {
     this.flatId = id;
     final ObservableList<OwnershipDto> ownersOfFlat = this.ownershipService.findByFlatId(id);
     this.listOfOwners.setItems(ownersOfFlat);
-    this.listOfOwners.setCellFactory(param -> new OwnershipListCell());
   }
 
   private ListCell<OwnerDto> getComboBoxListCell() {
