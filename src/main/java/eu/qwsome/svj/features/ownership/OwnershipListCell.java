@@ -46,7 +46,7 @@ class OwnershipListCell extends ListCell<OwnershipDto> {
     } else {
       this.ownerFirstNameLabel.setText(item.getOwner().getFirstName());
       this.ownerLastNameLabel.setText(item.getOwner().getLastName());
-      this.ownershipTypeLabel.setText(item.getOwnershipType().toString());
+      this.ownershipTypeLabel.setText(item.getOwnershipType().czechName());
     }
   }
 }
